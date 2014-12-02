@@ -1,0 +1,72 @@
+body {
+	background-color: #FFF8DC;
+	font-family: "nixie one", courier;
+	line-height: 30px;
+	font-weight: bold;
+
+}
+
+.line {
+	width: 1px;
+	height: 2000px;
+	float:left;
+	background-color: #D12D37;
+	margin-left: 70px;
+}
+
+h1 {
+	font-weight: bolder;
+	text-align: center;
+}
+
+h3 {
+	text-align: center;
+	margin-bottom: 80px;
+}
+
+.wrap {
+	padding: 80px;
+}
+
+.questionradios {
+	margin: 10px;
+	border: none;
+}
+
+legend {
+	font-weight: bolder;
+}
+
+label {
+	display: list-item;
+	list-style-type: none;
+	padding-left: 16px;
+}
+
+.score {
+	display: none;
+	padding: 25px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bolder;
+}
+
+img {
+	display: block;
+	margin: auto;
+	border: 5px solid #000; 
+	margin-top: 43px;
+}
+ 
+ button {
+ 	font-family: "nixie one";
+font-size: 25px;
+color: #3F3434;
+background-color: #ff9442;
+border: 2px outset #f37b1f;
+moz-border-radius: 20px;
+-webkit-border-radius: 5px;
+display: block;
+margin: auto;
+margin-top: 65px;
+ }
