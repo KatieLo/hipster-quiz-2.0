@@ -1,14 +1,14 @@
 var currentQuestionIndex = 0;
 
 $(document).ready(function(){
-	console.log("doc ready");
+	$("#totalQuestions").html(allQuestions.length);
 	showCurrentQuestion(currentQuestionIndex);
 	
 	$("#next").on("click", function(e){
 		e.preventDefault();
 		
 		if(isValid()){
-			$('#alert').hide();
+			$('#alert').html("");
 
 			gradeCurrentQuestion();
 			
@@ -49,6 +49,7 @@ $(document).ready(function(){
 });
 
 function showCurrentQuestion(index){
+	$("#currentQuestion").html(index + 1);
 	var questionHTMl = "<legend>" + allQuestions[index].question +"</legend>";
 	var choicesHTML = '';
 	for(var i = 0; i <  allQuestions[index].choices.length; i++){

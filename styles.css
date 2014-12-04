@@ -21,7 +21,13 @@ h1 {
 
 h3 {
 	text-align: center;
-	margin-bottom: 80px;
+	margin-bottom: 50px;
+}
+
+#nav {
+	width: 20%;
+	margin: 30px auto;
+	font-size: 1.17em;
 }
 
 .wrap {
@@ -60,13 +66,21 @@ img {
  
  button {
  	font-family: "nixie one";
-font-size: 25px;
-color: #3F3434;
-background-color: #ff9442;
-border: 2px outset #f37b1f;
-moz-border-radius: 20px;
--webkit-border-radius: 5px;
-display: block;
-margin: auto;
-margin-top: 65px;
+	font-size: 25px;
+	color: #3F3434;
+	background-color: #ff9442;
+	border: 2px outset #f37b1f;
+	moz-border-radius: 20px;
+	-webkit-border-radius: 5px;
+	display: inline;	
+ }
+
+ .button-group {
+ 	width: 19%;
+	margin: 40px auto;
+ }
+
+ #alert {
+ 	height: 30px;
+ 	padding-left: 22px;
  }
