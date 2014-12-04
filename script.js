@@ -30,8 +30,7 @@ $(document).ready(function(){
 			}	
 		} else {
 			// tell user to select an option 
-			$('#alert').html("You need to choose an option to continue.");
-			$('#alert').show();
+			$('#alert').hide().html("You need to choose an option to continue.").fadeIn('slow ');
 			showCurrentQuestion(currentQuestionIndex);
 		}
 	});
