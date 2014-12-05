@@ -5,6 +5,7 @@
 <title>Hipster Quize 2.0!</title>
 <link href="styles.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -13,7 +14,7 @@
 	<div class="wrap" id="quizpage">
 		<header>
 			<h1>Are you a Cape Town hipster?</h1>
-			<h3>Take this quiz to find out how much of a Cape Town hipster you are.<h3>
+			<h3>Take this quiz to find out how much of a Cape Town hipster you are.</h3>
 		</header>
 		<div class="container">
 			<div id="nav">Question <span id="currentQuestion"></span> of <span id="totalQuestions"></span></div>
@@ -25,14 +26,14 @@
 				<div class="button-group">
 					<button id="back">Back</button>
 					<button type="submit" id="next">Next</button>
-				</div>
-				
+				</div>	
 			</form>
-
+			<a href="#" id="save">&#10095; Save my Answers for Later</a>
 		</div>	
 	</div>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="jquery.cookie.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

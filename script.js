@@ -1,4 +1,8 @@
 var currentQuestionIndex = 0;
+var allQuestions;
+var name;
+
+loadQuiz();
 
 $(document).ready(function(){
 	$("#totalQuestions").html(allQuestions.length);
@@ -44,6 +48,16 @@ $(document).ready(function(){
 		}
 		
 	});
+
+	$("#save").on("click", function(){
+		var saveHTML = '<div id="save-user"><input type="text" value="' + name + '" placeholder="Your name" id="user-name"><button id="save-button">Save Quiz</button></div>';
+		$(this).after(saveHTML);
+		$("#save-button").on("click", function(){
+			saveUser($("#user-name").val());
+		});
+	});
+
+	
 	
 });
 
@@ -90,20 +104,44 @@ function calculateScore(){
 	return score;
 }
 
- 
-var allQuestions = (function () {
-    var json = null;
-    $.ajax({
-        'async': false,
-        'global': false,
-        'url': "questions.json",
-        'dataType': "json",
-        'success': function (data) {
-            json = data;
-        }
-    });
-    return json;
-})(); 
+function saveUser(name){
+	gradeCurrentQuestion();
+	var cookieData = {
+		"name": name,
+		"quiz": allQuestions
+	}
+	var cookieString = JSON.stringify(cookieData);
+	$.cookie("data", cookieString);
+}
+
+function loadQuiz(){
+	if($.cookie("data")){
+		var cookieValue = JSON.parse($.cookie("data"));
+		name = cookieValue.name;
+		allQuestions = cookieValue.quiz;
+		$("h3").after("Hi " + name + ". Welcome back to Hipster Quiz 2.0!");
+	} else {
+		loadFromData();
+	}
+}
+
+
+function loadFromData() {
+	allQuestions = (function () {
+	    var json = null;
+	    $.ajax({
+	        'async': false,
+	        'global': false,
+	        'url': "questions.json",
+	        'dataType': "json",
+	        'success': function (data) {
+	            json = data;
+	        }
+	    });
+	    return json;
+	})(); 	
+}
+
 
 
 
