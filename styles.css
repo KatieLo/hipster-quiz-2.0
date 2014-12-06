@@ -85,6 +85,12 @@ input[type="text"]:focus {
 	font-size: 20px;
 }
 
+#save-quiz {
+	width: 25%;
+	display: block;
+	margin: 20px auto;
+}
+
 .score {
 	display: none;
 	padding: 25px;

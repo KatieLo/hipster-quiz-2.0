@@ -6,11 +6,14 @@ loadQuiz();
 
 $(document).ready(function(){
 	$("#totalQuestions").html(allQuestions.length);
+
 	showCurrentQuestion(currentQuestionIndex);
-	
+	var greetingHTML = "<h3 id='greeting'>Hi " + name + ". Welcome back to Hipster Quiz 2.0!</h3>";
+	$("h3").after(greetingHTML);
+
 	$("#next").on("click", function(e){
 		e.preventDefault();
-		
+		$("#greeting").remove();
 		if(isValid()){
 			$('#alert').html("");
 
@@ -18,12 +21,11 @@ $(document).ready(function(){
 			
 			if(currentQuestionIndex < allQuestions.length - 1 ){
 				currentQuestionIndex++;
-				console.log("current index is " + currentQuestionIndex);
 				showCurrentQuestion(currentQuestionIndex);
 			} else {
 				var score = calculateScore();
 				var scoreHTML = "Your score is " + score + ".";
-				
+
 				if(score >= 5){
 					$('.container').html(scoreHTML + " You're so hipster, your wayfarers are melting!" + "<img src='img/hipsterHigh5.jpeg'>");
 				} else if( score >= 3){
@@ -31,6 +33,16 @@ $(document).ready(function(){
 				} else {
 					$('.container').html(scoreHTML + " Seems you're pretty normcore. " + "<img src='img/normcore.jpg'>");
 				}
+				
+				$('.container').after('<button id="save-quiz">Save my Quiz</a>');
+
+				$("#save-quiz").on("click", function(){
+					var saveHTML = '<div id="save-user"><input type="text" value="' + name + '" placeholder="Your name" id="user-name"><button id="save-button">Save Quiz</button></div>';
+					$(this).after(saveHTML);
+					$("#save-button").on("click", function(){
+						saveUser($("#user-name").val());
+					});
+				});
 			}	
 		} else {
 			// tell user to select an option 
@@ -119,7 +131,7 @@ function loadQuiz(){
 		var cookieValue = JSON.parse($.cookie("data"));
 		name = cookieValue.name;
 		allQuestions = cookieValue.quiz;
-		$("h3").after("Hi " + name + ". Welcome back to Hipster Quiz 2.0!");
+		
 	} else {
 		loadFromData();
 	}
