@@ -8,8 +8,7 @@ $(document).ready(function(){
 	$("#totalQuestions").html(allQuestions.length);
 
 	showCurrentQuestion(currentQuestionIndex);
-	var greetingHTML = "<h3 id='greeting'>Hi " + name + ". Welcome back to Hipster Quiz 2.0!</h3>";
-	$("h3").after(greetingHTML);
+	
 
 	$("#next").on("click", function(e){
 		e.preventDefault();
@@ -131,7 +130,15 @@ function loadQuiz(){
 		var cookieValue = JSON.parse($.cookie("data"));
 		name = cookieValue.name;
 		allQuestions = cookieValue.quiz;
-		
+		var greetingHTML = "<h3 id='greeting'>Hi " + name + ". Welcome back to Hipster Quiz 2.0! <a href='#'> Not " + name +" ? Reset Quiz</a></h3>";
+		$("h3").after(greetingHTML);
+
+		$("h3").find("a").on("click", function(){
+			console.log("clicked unset");
+			$.removeCookie("data");
+			console.log($.cookie("data"));
+			location.reload();
+		});
 	} else {
 		loadFromData();
 	}
