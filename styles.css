@@ -43,6 +43,23 @@ h3 {
 	padding: 80px;
 }
 
+#login {
+	display: none;
+	position: absolute;
+	right: 30px;
+	top: 20px;
+}
+#login-link {
+	display: inline;
+	margin-right: 10px;
+}
+
+#login-button {
+	font-family: "Open Sans";
+	font-size: 15px;
+	margin-left: 10px;
+}
+
 .questionradios {
 	margin: 10px;
 	border: none;
@@ -62,7 +79,7 @@ label {
 	text-align: center;
 }
 
-input[type="text"] {
+input[type="text"], input[type="email"], input[type="password"]{
   width: 25%;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;

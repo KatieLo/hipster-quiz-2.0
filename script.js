@@ -3,6 +3,7 @@ var allQuestions;
 var name;
 
 loadQuiz();
+allowLogin();
 
 $(document).ready(function(){
 	$("#totalQuestions").html(allQuestions.length);
@@ -33,13 +34,15 @@ $(document).ready(function(){
 					$('.container').html(scoreHTML + " Seems you're pretty normcore. " + "<img src='img/normcore.jpg'>");
 				}
 				
-				$('.container').after('<button id="save-quiz">Save my Quiz</a>');
+				$('.container').after('<button id="save-quiz">Save my results</a>');
 
 				$("#save-quiz").on("click", function(){
-					var saveHTML = '<div id="save-user"><input type="text" value="' + name + '" placeholder="Your name" id="user-name"><button id="save-button">Save Quiz</button></div>';
+					var saveHTML = '<div id="save-user"><input type="email" value="" placeholder="Email address" id="email"><input type="text" value="" placeholder="Password" id="password"><button id="save-button">Save Results</button></div>';
 					$(this).after(saveHTML);
 					$("#save-button").on("click", function(){
-						saveUser($("#user-name").val());
+						saveQuiz($("#email").val(), $("#password").val());
+						$("#save-user").html("<div id='save-success'>Quiz results saved!</div>");
+						$("#save-user").delay(2000).fadeOut(400);
 					});
 				});
 			}	
@@ -69,6 +72,17 @@ $(document).ready(function(){
 			$(this).parent().after("<div id='save-success'>Quiz saved!</div>");
 			$("#save-success").delay(2000).fadeOut(400);
 
+		});
+	});
+
+	$("#login-link").on("click", function(){
+		
+		$(this).parent().html("<input id='user-email' type='email' placeholder='Email address'><input id='user-password' type='password' placeholder='password'><button id='login-button' type='submit'>Login</button>");
+		$("#login-button").on("click", function(e){
+			e.preventDefault();
+			var score = loginUser($("#user-email").val(), $("#user-password").val());
+			var loginGreetingHTML = "<h3> Your previous score was " + score + "</h3>";
+			$(this).parent().html(loginGreetingHTML);
 		});
 	});
 
@@ -129,6 +143,36 @@ function saveUser(name){
 	$.cookie("data", cookieString);
 }
 
+function saveQuiz(email, password){
+	if (typeof window.localStorage != "undefined"){
+		 var quizResults = {
+		 	"email": email,
+		 	"password": password,
+		 	"quiz": allQuestions
+		 }
+		 var quizResultsString = JSON.stringify(quizResults);
+		 localStorage.setItem("results", quizResultsString);
+		 var quizResultsParsed = JSON.parse(localStorage.getItem("results"));		 
+	}
+}
+
+function allowLogin(){
+	if(localStorage.getItem("results") !== null){
+		$("#login").show();
+	}
+}
+
+// function logs user in and returns true when user is logged in 
+function loginUser(email, password){
+	var quizResultsParsed = JSON.parse(localStorage.getItem("results"));
+
+	if(email == quizResultsParsed.email && password == quizResultsParsed.password){
+		allQuestions = quizResultsParsed.quiz;
+		var score = calculateScore();
+		return score;
+	}	
+}
+
 function loadQuiz(){
 	if($.cookie("data")){
 		var cookieValue = JSON.parse($.cookie("data"));
@@ -138,9 +182,7 @@ function loadQuiz(){
 		$("h3").after(greetingHTML);
 
 		$("h3").find("a").on("click", function(){
-			console.log("clicked unset");
 			$.removeCookie("data");
-			console.log($.cookie("data"));
 			location.reload();
 		});
 	} else {
