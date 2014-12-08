@@ -65,6 +65,10 @@ $(document).ready(function(){
 		$(this).after(saveHTML);
 		$("#save-button").on("click", function(){
 			saveUser($("#user-name").val());
+			$(this).parent().hide();
+			$(this).parent().after("<div id='save-success'>Quiz saved!</div>");
+			$("#save-success").delay(2000).fadeOut(400);
+
 		});
 	});
 
