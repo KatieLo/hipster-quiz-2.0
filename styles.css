@@ -46,8 +46,9 @@ h3 {
 #login {
 	display: none;
 	position: absolute;
-	right: 30px;
+	right: 10px;
 	top: 20px;
+	text-align: right;
 }
 #login-link {
 	display: inline;

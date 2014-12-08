@@ -64,6 +64,7 @@ $(document).ready(function(){
 	});
 
 	$("#save").on("click", function(){
+		$(this).hide();
 		var saveHTML = '<div id="save-user"><input type="text" value="' + name + '" placeholder="Your name" id="user-name"><button id="save-button">Save Quiz</button></div>';
 		$(this).after(saveHTML);
 		$("#save-button").on("click", function(){
@@ -71,7 +72,7 @@ $(document).ready(function(){
 			$(this).parent().hide();
 			$(this).parent().after("<div id='save-success'>Quiz saved!</div>");
 			$("#save-success").delay(2000).fadeOut(400);
-
+			$("#save").delay(2000).fadeIn(400);
 		});
 	});
 
@@ -82,7 +83,10 @@ $(document).ready(function(){
 			e.preventDefault();
 			var score = loginUser($("#user-email").val(), $("#user-password").val());
 			var loginGreetingHTML = "<h3> Your previous score was " + score + "</h3>";
-			$(this).parent().html(loginGreetingHTML);
+			if(score != undefined){
+				$(this).parent().html(loginGreetingHTML);
+			}
+			
 		});
 	});
 
@@ -183,6 +187,7 @@ function loadQuiz(){
 
 		$("h3").find("a").on("click", function(){
 			$.removeCookie("data");
+			localStorage.removeItem("results");
 			location.reload();
 		});
 	} else {
