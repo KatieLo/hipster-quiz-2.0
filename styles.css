@@ -150,3 +150,16 @@ img {
  	padding-left: 22px;
  }
 
+#tweet-score {
+	display: block;
+	width: 150px;
+	margin: auto;
+	padding: 3px 6px;
+	border-radius: 2px;
+	border-bottom: 3px solid #4a97ce;
+	background-color: #54acec;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+}

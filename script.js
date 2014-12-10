@@ -25,16 +25,21 @@ $(document).ready(function(){
 			} else {
 				var score = calculateScore();
 				var scoreHTML = "Your score is " + score + ".";
-
+				var hashtag = "";
 				if(score >= 5){
 					$('.container').html(scoreHTML + " You're so hipster, your wayfarers are melting!" + "<img src='img/hipsterHigh5.jpeg'>");
+					hashtag = "soHipsterNotEvenHipster";
 				} else if( score >= 3){
 					$('.container').html(scoreHTML + " Ooh. It's a close call, man. " + "<img src='img/Ooh.gif'>");
+					hashtag = "HipsterAppreciationSociety";
 				} else {
 					$('.container').html(scoreHTML + " Seems you're pretty normcore. " + "<img src='img/normcore.jpg'>");
+					hashtag = "normcore";
 				}
-				
-				$('.container').after('<button id="save-quiz">Save my results</a>');
+				var URLtoShare = "http://localhost:8888/Hipster-Quiz2.0/";
+				var textToShare = "I scored " + score + " on the Cape Town Hipster Quiz!";
+				var tweetButton = '<a id="tweet-score" target="_blank" href="https://twitter.com/share?url=' + encodeURIComponent(URLtoShare) + '&hashtags=' + encodeURIComponent(hashtag) + '&text=' + encodeURIComponent(textToShare) + '">Tweet Your Score</a>';
+				$('.container').after('<button id="save-quiz">Save my results</button>' + tweetButton);
 
 				$("#save-quiz").on("click", function(){
 					var saveHTML = '<div id="save-user"><input type="email" value="" placeholder="Email address" id="email"><input type="text" value="" placeholder="Password" id="password"><button id="save-button">Save Results</button></div>';
