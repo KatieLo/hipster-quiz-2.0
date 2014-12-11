@@ -109,7 +109,7 @@ input[type="text"]:focus {
 	margin: 20px auto;
 }
 
-#save-success {
+.save-success {
 	width: 100%;
 	text-align: center;
 }
