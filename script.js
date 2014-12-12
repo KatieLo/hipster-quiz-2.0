@@ -1,3 +1,6 @@
+// Include object js files
+
+
 var currentQuestionIndex = 0;
 var allQuestions;
 var name;
@@ -133,25 +136,12 @@ $(document).ready(function(){
 });
 
 function showCurrentQuestion(index){
-	var navData = {
-		"currentQuestionNumber":index + 1,
-		"totalNumberOfQuestions":allQuestions.length
-	};
-	// Show nav header (Question x of y)
-	$("#nav").html(navCompiledTemplate(navData));
-	// Show question html
-	$(".questionradios").html(questionCompiledTemplate(allQuestions[index]));
-	// Select checkbox if user has clicked before
-	if(allQuestions[currentQuestionIndex].selection != -1) {
-		$(":radio[value=" + allQuestions[currentQuestionIndex].selection +"]").prop("checked", true);
-	}
-
+	var currentQuestion = new Question(allQuestions[index].question, allQuestions[index].choices, allQuestions[index].correctAnswer, index, allQuestions[index].seletion);
+	currentQuestion.displayQuestion();
 }
 
 function gradeCurrentQuestion(){
 	allQuestions[currentQuestionIndex].selection = +$('input[name=q]:checked').val();
-	if(allQuestions[currentQuestionIndex].selection == allQuestions[currentQuestionIndex].correctAnswer){
-	}
 }
 
 function showPreviousQuestion(index, choice){
@@ -236,7 +226,6 @@ function loadQuiz(){
 		loadFromData();
 	}
 }
-
 
 function loadFromData() {
 	allQuestions = (function () {
