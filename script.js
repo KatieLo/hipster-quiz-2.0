@@ -14,10 +14,10 @@ var loginGreetingCompiledTemplate = Handlebars.compile($("#login-greeting-templa
 var loadQuizCompiledTemplate = Handlebars.compile($("#load-quiz-template").html());  
 
 loadQuiz();
-allowLogin();	
 
 $(document).ready(function(){
 
+	allowLogin();
 	showCurrentQuestion(currentQuestionIndex);
 
 	$("#next").on("click", function(e){
