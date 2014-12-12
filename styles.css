@@ -17,7 +17,7 @@ a {
 
 .line {
 	width: 1px;
-	height: 2000px;
+	height: 800px;
 	float:left;
 	background-color: #D12D37;
 	margin-left: 70px;
@@ -38,7 +38,7 @@ h3 {
 * Tutorial at http://unindented.org/articles/github-ribbon-using-css-transforms/
 */
 .ribbon {
-  background-color: #BDEC00;
+  background-color: #DC143C;
   overflow: hidden;
   white-space: nowrap;
   position: absolute;
@@ -55,15 +55,14 @@ h3 {
 }
 .ribbon a {
   width: inherit;
-  border: 1px solid #E5FF8F;
-  color: #000;
+  border: 1px solid #FFF8DC;
+  color: #FFF8DC;
   display: block;
   font: bold 81.25% 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin: 1px 0;
   padding: 10px 50px;
   text-align: center;
   text-decoration: none;
-  text-shadow: 0 0 5px #E5FF8F;
 }
 
 
